@@ -2,7 +2,7 @@ const express = require('express');
 const moviesRouter = express.Router();
 
 moviesRouter.get('/', (req, res) => {
-    Movie.getMovies((err, movie) => {
+    Movie.getMovies((err,movie) => {
         if(err) {
             throw err;
         }
