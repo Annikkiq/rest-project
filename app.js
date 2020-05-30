@@ -7,11 +7,12 @@ const moviesRoute = require('./routers/moviesRouter');
 const genresRoute = require('./routers/genresRouter');
 const mainRoute = require('./routers/mainRouter');
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
+
+app.use('/',mainRoute);
 app.use('/api/movies',moviesRoute);
 app.use('/api/genres',genresRoute);
-app.use('/',mainRoute);
-
-app.use(bodyParser.json());
 
 Movie = require('./models/movies');
 Genre = require('./models/genres');

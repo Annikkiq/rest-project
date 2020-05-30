@@ -7,23 +7,25 @@ let genreList = mongoose.Schema({
     },
     Date: {
         type: Date,
-        default: Date.now
+        default: Date.now()
     }
 });
 
 const Genre = module.exports = mongoose.model('Genre', genreList);
 
-//Get Genres
 module.exports.getGenres = (callback, limit) => {
 	Genre.find(callback).limit(limit);
 };
 
-// Add Genre
+module.exports.getGenreById = (id, callback) => {
+	let query = { _id: id };
+	Genre.findOne(query, callback);
+};
+
 module.exports.addGenre = (genre, callback) => {
 	Genre.create(genre, callback);
 };
 
-// Update Genre
 module.exports.updateGenre = (id, genre, options, callback) => {
 	let query = {_id: id};
 	let update = {
@@ -32,8 +34,7 @@ module.exports.updateGenre = (id, genre, options, callback) => {
 	Genre.findOneAndUpdate(query, update, options, callback);
 };
 
-//Delete Genre
 module.exports.removeGenre = (id, callback) => {
 	let query = {_id: id};
-	Genre.remove(query, callback);
+	Genre.deleteOne(query, callback);
 };

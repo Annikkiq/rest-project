@@ -6,7 +6,7 @@ moviesRouter.get('/', (req, res) => {
         if(err) {
             throw err;
         }
-        res.json(movie);
+        return res.json(movie);
     })
 });
 
@@ -15,7 +15,7 @@ moviesRouter.get('/:_id', (req, res) => {
         if(err) {
             throw err;
         }
-        res.json(movie);
+        return res.json(movie);
     })
 });
 
@@ -25,7 +25,7 @@ moviesRouter.post('/', (req, res) => {
         if(err) {
             throw err;
         }
-        res.json(movie);
+        return res.json(movie);
     })
 });
 
@@ -36,7 +36,7 @@ moviesRouter.put('/:_id', (req, res) => {
         if(err) {
             throw err;
         }
-        res.json(movie);
+        return res.json(movie);
     })
 });
 
@@ -46,7 +46,7 @@ moviesRouter.delete('/:_id', (req, res) => {
 		if(err){
 			throw err;
 		}
-		res.json(movie);
+		return res.json(movie);
 	})
 });
 

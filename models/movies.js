@@ -32,30 +32,27 @@ let movieList = mongoose.Schema ({
     },
     Date: {
         type: Date,
-        default: Date.now
+        default: Date.now()
     }
 });
 
 const Movie = module.exports = mongoose.model('Movie', movieList);
 
-//Get Movies
 module.exports.getMovies = (callback, limit) => {
     Movie.find(callback).limit(limit);
 };
 
-//Get Movies by Id
-module.exports.getMoviesById = (id, callback) => {
-    Movie.create(id, callback);
+module.exports.getMovieById = (id, callback) => {
+    let query = { _id: id };
+    Movie.findOne(query, callback)
 };
 
-//Add Movie
 module.exports.addMovie = (movie, callback) => {
     Movie.create(movie, callback);
 };
 
-//Update Movie
 module.exports.updateMovie = (id, movie, options, callback) => {
-    let query = { id: id };
+    let query = { _id: id };
     let update = {
         title: movie.title,
         genre: movie.genre,
@@ -66,13 +63,12 @@ module.exports.updateMovie = (id, movie, options, callback) => {
         releaseDate: movie.releaseDate,
         runningTime: movie.runningTime,
         language: movie.language,
-        Date: Date.now
+        Date: Date.now()
     }
     Movie.findOneAndUpdate(query, update, options, callback);
 };
 
-//Delete Movie
 module.exports.removeMovie = (id, callback) => {
-    let query = { id: id };
-    Movie.remove(query, callback);
+    let query = { _id: id };
+    Movie.deleteOne(query, callback);
 };
